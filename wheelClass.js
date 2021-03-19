@@ -51,6 +51,20 @@ class Wheel {
         }
     }
 
+    setSegmentsUsingSegmentInput(segmentInputs) {
+        this.numberOfSegments = segmentInputs.length;
+        this.segmentSize = 360 / this.numberOfSegments;
+        this.segments = [];
+
+        for(let i = 0; i < segmentInputs.length; i++) {
+            let newSegment = new WheelSegment();
+            newSegment.setArcDegrees((this.segmentSize * i), this.segmentSize);
+            newSegment.color = segmentInputs[i].color;
+            newSegment.segmentId = segmentInputs[i].name;
+            this.segments.push(newSegment);
+        }
+    }
+
     draw(ctx, offset) {
         for(let i = 0; i< this.segments.length; i++) {
             this.segments[i].draw(ctx, this.centerX, this.centerY, this.radius, offset);
@@ -58,18 +72,28 @@ class Wheel {
 
 
         // draw the ticker above
-        ctx.fillStyle = 'black';
-        ctx.fillRect(this.centerX - (this.radius / 2), this.centerY - this.radius + 10, 20, 20);
+        ctx.fillStyle = 'rgba(0,0,0,0.6)';
         // instead of a rect, draw a polygon triangle
+        ctx.moveTo(this.centerX, this.centerY);
+        ctx.arc(this.centerX, this.centerY, this.radius + 5, convertToRadians(0), convertToRadians(2), false);
+        ctx.moveTo(this.centerX, this.centerY);
+        ctx.closePath();
+        ctx.fill();
     }
 
     getSelectedSegment(offset) {
-        let selectedSegmentId;
+        let selectedSegmentId = 'None Found';
 
         for(let i = 0; i < this.segments.length; i++) {
-            if((offset) >= this.segments[i].startDegree && (offset) < this.segments[i].endDegree) {
-                selectedSegmentId = this.segments[i].segmentId;
-            }
+            // selectionStart;
+            // selectionEnd;
+            const selectionStart = (this.segments[i].startDegree);
+            const selectionEnd = (this.segments[i].startDegree + this.segments[i].degreeSize);
+
+            console.log({start:selectionStart, end: selectionEnd, offset: offset, index: i});
+
+            // if startDegree + offset within -5 && 5
+            
         }
 
         return selectedSegmentId;
