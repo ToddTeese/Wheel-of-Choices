@@ -45,8 +45,11 @@ let formInput = document.querySelector('form');
 class SegmentInput {
     constructor() {
         this.id = 0;
-        this.color = `#${Math.floor(Math.random() * 9)}${Math.floor(Math.random() * 9)}${Math.floor(Math.random() * 9)}`;
-        this.name = '';
+        let randomRed = Math.floor(Math.random() * 9);
+        let grungyGreen = Math.floor(Math.random() * 9);
+        let boffinBlue = Math.floor(Math.random() * 9);
+        this.color = `#${randomRed}${randomRed}${grungyGreen}${grungyGreen}${boffinBlue}${boffinBlue}`;
+        this.name = '1000';
     }
 }
 let segmentInputs = [new SegmentInput(), new SegmentInput()];
