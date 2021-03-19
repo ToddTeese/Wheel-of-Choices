@@ -41,6 +41,11 @@ wheelObj.draw(ctx, offset);
 console.log({wheel: wheelObj});
 // outputText.innerText = wheelObj.getSelectedSegment(offset);
 
+// randomTimeFrame
+const minimumTimeFrame = 4000;
+let randomTimeFrame = ((Math.random() * 5) * 1000) + minimumTimeFrame;
+let offsetDelta = 0.3;
+
 
 
 function step(timestamp) {
@@ -61,12 +66,23 @@ function step(timestamp) {
 
     outputText.innerText = wheelObj.getSelectedSegment(offset) + " " + offset;
 
-    offset += 0.05 * delta;
+    console.log({elapsed: elapsed, randomTimeFrame : randomTimeFrame});
+
+    offset += offsetDelta * delta;
     offset = offset < 360 ? offset :offset % 360;
+
+    // offset change should be reduced as elapsed comes closer to the end of the randomTimeFrame;
+
+    const timeDelta = randomTimeFrame - elapsed;
+
+    if(timeDelta < 3000) {
+        offsetDelta = (timeDelta / 10000);
+    }
+
   
-    // if (elapsed < 6000) { // Stop the animation after 2 seconds
+    if (elapsed < randomTimeFrame) { // Stop the animation after 2 seconds
       window.requestAnimationFrame(step);
-    // }
+    }
   }
 
 window.requestAnimationFrame(step);
