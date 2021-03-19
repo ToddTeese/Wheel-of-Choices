@@ -55,13 +55,19 @@ class Wheel {
         for(let i = 0; i< this.segments.length; i++) {
             this.segments[i].draw(ctx, this.centerX, this.centerY, this.radius, offset);
         }
+
+
+        // draw the ticker above
+        ctx.fillStyle = 'black';
+        ctx.fillRect(this.centerX - (this.radius / 2), this.centerY - this.radius + 10, 20, 20);
+        // instead of a rect, draw a polygon triangle
     }
 
     getSelectedSegment(offset) {
         let selectedSegmentId;
 
         for(let i = 0; i < this.segments.length; i++) {
-            if(offset > this.segments[i].startDegree && offset < this.segments[i].endDegree) {
+            if((offset) >= this.segments[i].startDegree && (offset) < this.segments[i].endDegree) {
                 selectedSegmentId = this.segments[i].segmentId;
             }
         }

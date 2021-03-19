@@ -2,7 +2,7 @@ console.log('App connected Bro!');
 
 const wheelHolder = document.querySelector('.wheelHolder');
 const ctx = wheelHolder.getContext('2d');
-const options = {width: 600, height: 600, numberOfSegments: 3}; // allow user input on options
+const options = {width: 600, height: 600, numberOfSegments: 10}; // allow user input on options
 
 wheelHolder.width = options.width;
 wheelHolder.height = options.height;
@@ -34,12 +34,14 @@ wheelObj.centerY = options.height / 2;
 wheelObj.radius = options.width / 3;
 
 let offset = 0;
+let start;
+let previousTimeStamp;
 
 wheelObj.draw(ctx, offset);
 console.log({wheel: wheelObj});
+// outputText.innerText = wheelObj.getSelectedSegment(offset);
 
-let start;
-let previousTimeStamp;
+
 
 function step(timestamp) {
 
@@ -57,7 +59,7 @@ function step(timestamp) {
 
     wheelObj.draw(ctx,offset);
 
-    outputText.innerText = wheelObj.getSelectedSegment(offset);
+    outputText.innerText = wheelObj.getSelectedSegment(offset) + " " + offset;
 
     offset += 0.05 * delta;
     offset = offset < 360 ? offset :offset % 360;
@@ -67,4 +69,4 @@ function step(timestamp) {
     // }
   }
 
-  window.requestAnimationFrame(step);
+window.requestAnimationFrame(step);
