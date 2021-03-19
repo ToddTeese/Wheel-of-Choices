@@ -17,10 +17,10 @@ class WheelSegment {
         ctx.beginPath();
         ctx.strokeStyle = this.color;
         ctx.fillStyle = this.color;
-        // ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, radius, convertToRadians(this.startDegree + offset), convertToRadians(this.startDegree + offset+ this.degreeSize), true);
-        // ctx.moveTo(centerX, centerY);
-        // ctx.closePath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, convertToRadians(this.startDegree + offset), convertToRadians(this.startDegree + offset+ this.degreeSize), false);
+        ctx.moveTo(centerX, centerY);
+        ctx.closePath();
         ctx.fill();
     }
 }
@@ -77,7 +77,7 @@ class Wheel {
         ctx.moveTo(this.centerX, this.centerY);
         ctx.arc(this.centerX, this.centerY, this.radius + 5, convertToRadians(0), convertToRadians(2), false);
         ctx.moveTo(this.centerX, this.centerY);
-        // ctx.closePath();
+        ctx.closePath();
         ctx.fill();
     }
 
