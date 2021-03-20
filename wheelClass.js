@@ -71,11 +71,10 @@ class Wheel {
         }
 
 
-        // draw the ticker above
         ctx.fillStyle = 'rgba(0,0,0,0.6)';
-        // instead of a rect, draw a polygon triangle
+
         ctx.moveTo(this.centerX, this.centerY);
-        ctx.arc(this.centerX, this.centerY, this.radius + 5, convertToRadians(0), convertToRadians(2), false);
+        ctx.arc(this.centerX, this.centerY, this.radius + 5, convertToRadians(0), convertToRadians(1), false);
         ctx.moveTo(this.centerX, this.centerY);
         ctx.closePath();
         ctx.fill();

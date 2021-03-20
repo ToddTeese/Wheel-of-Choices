@@ -144,7 +144,6 @@ wheelObj.draw(ctx, offset);
 
 
 wheelObj.draw(ctx, offset);
-console.log({wheel: wheelObj});
 
 function step(timestamp) {
 
@@ -162,19 +161,24 @@ function step(timestamp) {
 
     wheelObj.draw(ctx,offset);
 
-    outputText.innerText = "Selected Option : " + wheelObj.getSelectedSegment(offset);
+    outputText.innerText = "Selected Option : " + wheelObj.getSelectedSegment(offset * -1);
 
+    
     offset += offsetDelta * delta;
-    offset = offset < 360 ? offset :offset % 360;
+
+    if((offset * -1) > 360) {
+        offset = ((offset * -1) % 360) * -1;
+    }
+    // offset = offset < -360 ? offset :((offset * -1 % 360) * -1 );
 
     // offset change should be reduced as elapsed comes closer to the end of the randomTimeFrame;
 
     const timeDelta = randomTimeFrame - elapsed;
 
     if(timeDelta < 3000) {
-        offsetDelta = (timeDelta / 10000);
+        offsetDelta = (timeDelta / 10000) * -1;
     } else {
-        offsetDelta = 0.3; // default accel
+        offsetDelta = -0.3; // default accel
     }
 
   
