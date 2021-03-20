@@ -159,6 +159,8 @@ function step(timestamp) {
     }
     previousTimeStamp = timestamp;
 
+    ctx.clearRect(0, 0, wheelHolder.width, wheelHolder.height);
+
     wheelObj.draw(ctx,offset);
 
     outputText.innerText = "Selected Option : " + wheelObj.getSelectedSegment(offset * -1);
@@ -187,4 +189,4 @@ function step(timestamp) {
     }
   }
 
-window.requestAnimationFrame(step);
+// window.requestAnimationFrame(step);
