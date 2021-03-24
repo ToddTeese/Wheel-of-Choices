@@ -109,6 +109,7 @@ function addSegment(event) {
     segmentInputs.push(new SegmentInput());
     indexInputs(segmentInputs);
     displayInputs(segmentInputs, formInput);
+    wheelObj.setSegmentsUsingSegmentInput(segmentInputs);
 }
 function removeSegment(event) {
     console.log(event.target);
@@ -119,6 +120,7 @@ function removeSegment(event) {
     }
     indexInputs(segmentInputs);
     displayInputs(segmentInputs, formInput);
+    wheelObj.setSegmentsUsingSegmentInput(segmentInputs);
 }
 function colorChanged(event) {
     const index = event.target.dataset.index;
